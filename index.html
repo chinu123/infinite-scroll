@@ -1,0 +1,59 @@
+<html>
+  <ul class="list">
+      <div class="footer"></div>
+  </ul>
+  
+  <script>
+    let count = 1;
+    ulEle = document.querySelector(".list");
+    const footerEle = document.querySelector(".footer");
+    let options = {
+      root: footerEle,
+      rootMargin: '0px',
+      threshold: 0.001
+  }
+
+  addItem = (entries=[{}]) => {
+    console.log('sfs', entries[0].intersectionRatio);
+      for(let i=0; i<= 11;i++) {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `item ${count++}`;
+        ulEle.insertBefore(listItem, footerEle);
+      }
+    }
+
+let observer = new IntersectionObserver(addItem);
+observer.observe(footerEle);
+
+// below is the implementation using scroll events
+    // ulEle.addEventListener('scroll', myFunction);
+
+    // function myFunction() {
+    //   console.log(ulEle.scrollTop , ulEle.clientHeight , ulEle.scrollHeight);
+    //   if (ulEle.scrollTop + ulEle.clientHeight >= ulEle.scrollHeight) {
+    //   //fetch api
+    //    addItem();
+    //    console.log('call fetch');
+    //  }
+    // }
+    
+    addItem();
+  </script>
+  <style>
+    .list {
+      height: 200px;
+      border: 1px solid black;
+      scroll-behavior: smooth;
+      overflow: scroll;
+      position: relative;
+    }
+    .footer {
+      width: 100%;
+      height: 20px;
+      /* position: absolute; */
+      bottom: 0;
+      background-color: aqua;
+      margin-bottom: 10px;
+    }
+  </style>
+</html>
